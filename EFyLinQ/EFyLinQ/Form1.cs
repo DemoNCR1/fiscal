@@ -28,6 +28,7 @@ namespace EFyLinQ
                                 Puesto = e.Puesto.Descripcion
                             };
 
+
                 dataGridView1.DataSource = query;
             }
 
