@@ -19,7 +19,15 @@ namespace EFyLinQ
 
             _ef = new DemoNCREntities();
 
-            dataGridView1.DataSource = _ef.Empleadoes;
+            var query = from e in _ef.Empleadoes
+                        select new
+                        {
+                            Codigo = e.Id,
+                            Nombre = e.Nombre,
+                            Puesto = e.Puesto.Descripcion
+                        };
+
+            dataGridView1.DataSource = query;
         }
     }
 }
