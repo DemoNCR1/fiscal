@@ -11,23 +11,26 @@ namespace EFyLinQ
 {
     public partial class Form1 : Form
     {
-        DemoNCREntities _ef;
 
         public Form1()
         {
             InitializeComponent();
 
-            _ef = new DemoNCREntities();
+            using (var ef = new DemoNCREntities())
+            {
 
-            var query = from e in _ef.Empleadoes
-                        select new
-                        {
-                            Codigo = e.Id,
-                            Nombre = e.Nombre,
-                            Puesto = e.Puesto.Descripcion
-                        };
+                var query = from e in ef.Empleadoes
+                            orderby e.Nombre, e.Puesto.Descripcion
+                            select new
+                            {
+                                Codigo = e.Id,
+                                Nombre = e.Nombre,
+                                Puesto = e.Puesto.Descripcion
+                            };
 
-            dataGridView1.DataSource = query;
+                dataGridView1.DataSource = query;
+            }
+
         }
     }
 }
