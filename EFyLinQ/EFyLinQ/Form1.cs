@@ -11,9 +11,15 @@ namespace EFyLinQ
 {
     public partial class Form1 : Form
     {
+        DemoNCREntities _ef;
+
         public Form1()
         {
             InitializeComponent();
+
+            _ef = new DemoNCREntities();
+
+            dataGridView1.DataSource = _ef.Empleadoes;
         }
     }
 }
