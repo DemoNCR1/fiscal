@@ -20,6 +20,7 @@ namespace EFyLinQ
             _ef = new DemoNCREntities();
 
             var query = from e in _ef.Empleadoes
+                        orderby e.Id
                         select new
                         {
                             Codigo = e.Id,
